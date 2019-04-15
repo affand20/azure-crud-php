@@ -19,8 +19,8 @@
 
         $sql = "INSERT INTO user (email, password) VALUES('$email', '$password')";
         $result = mysqli_query($conn,$sql);
-        if ($result) {
-            echo 'Register Success !';
+        if ($result) {            
+            header('location:index.php');
         } else{
             echo 'Register Failed';
         }
