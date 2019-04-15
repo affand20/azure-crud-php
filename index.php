@@ -32,24 +32,16 @@
         </thead>
         <tbody>
             <?php
-                include './connection.php';
-
-                try {
-                    $sql = "SELECT * FROM dbo.User";
-                    $query = $conn->query($sql);
-                    $users = $query->fetchAll();
-                    if (count($users)>0) {
-                        foreach ($users as $user) { ?>
-                            <tr>
-                                <td><?php echo $user['id']; ?></td>
-                                <td><?php echo $user['email']; ?></td>
-                                <td><?php echo $user['password']; ?></td>
-                            </tr>
-                        <?php }
-                    }
-                } catch(Exception $e) {
-                    echo "Failed: " . $e;
-                }
+                include './connection.php';                
+                $sql = "SELECT * FROM dbo.User";
+                $query = mysqli_query($conn, $sql);
+                while ($row = mysqli_fetch_assoc($query)) { ?>
+                    <tr>
+                        <td><?php echo $row['id']; ?></td>
+                        <td><?php echo $row['email']; ?></td>
+                        <td><?php echo $row['password']; ?></td>
+                    </tr>
+                <?php }
             ?>            
         </tbody>
     </table>
