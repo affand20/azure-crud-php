@@ -1,15 +1,3 @@
-<?php
-    include './connection.php';
-
-    try {
-        $sql = "SELECT * FROM dbo.User";
-        $query = $conn->query($sql);
-        $users = $query->fetchAll();         
-    } catch(Exception $e) {
-        echo "Failed: " . $e;
-    }
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +21,7 @@
     </div>    
     <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-
+    
     <table class="table table-striped">
         <thead>
             <tr>
@@ -43,13 +31,26 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach($users as $user){ ?>
-            <tr>
-                <td><?php echo $user['id']; ?></td>
-                <td><?php echo $user['email']; ?></td>
-                <td><?php echo $user['password']; ?></td>
-            </tr>
-            <?php } ?>
+            <?php
+                include './connection.php';
+
+                try {
+                    $sql = "SELECT * FROM dbo.User";
+                    $query = $conn->query($sql);
+                    $users = $query->fetchAll();
+                    if (count($users)>0) {
+                        foreach ($users as $user) { ?>
+                            <tr>
+                                <td><?php echo $user['id']; ?></td>
+                                <td><?php echo $user['email']; ?></td>
+                                <td><?php echo $user['password']; ?></td>
+                            </tr>
+                        <?php }
+                    }
+                } catch(Exception $e) {
+                    echo "Failed: " . $e;
+                }
+            ?>            
         </tbody>
     </table>
 
