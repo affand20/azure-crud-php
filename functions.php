@@ -7,7 +7,7 @@
             $email = $_POST['email'];
             $password = $_POST['password'];
                     
-            $sql = "INSERT INTO User (email, password) 
+            $sql = "INSERT INTO dbo.User (email, password) 
                         VALUES (?,?)";
             $query = $conn->prepare($sql);
             $query->bindValue(1, $email);
