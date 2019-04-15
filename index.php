@@ -2,7 +2,7 @@
     include './connection.php';
 
     try {
-        $sql = "SELECT * FROM User";
+        $sql = "SELECT * FROM dbo.User";
         $query = $conn->query($sql);
         $users = $query->fetchAll();         
     } catch(Exception $e) {
