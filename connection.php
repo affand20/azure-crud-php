@@ -20,6 +20,7 @@ $password = 'Try_dev98';
 $dbname = 'submission1';
 
 $conn = mysqli_init();
+mysqli_ssl_set($conn,NULL,NULL, "./BaltimoreCyberTrustRoot.crt.pem", NULL, NULL);
 mysqli_real_connect($conn, $host, $username, $password, $dbname, 3306);
 if (mysqli_connect_errno($conn)) {
     die('Failed to connect to MySQL: '.mysqli_connect_error());
